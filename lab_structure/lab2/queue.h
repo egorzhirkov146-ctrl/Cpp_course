@@ -4,18 +4,23 @@
 #include "stack.h"
 #include <stdexcept>
 
+template<typename T>
 class Queue {
 private:
-    Stack StackIn;
-    Stack StackOut;
-    void transitElements();
-
+    Stack<T> input_stack;   
+    Stack<T> output_stack; 
+    void transferElements(); 
+    
 public:
-    Queue(std::int64_t maxSize);
-    void enqueue(float value);
-    float dequeue();
-    bool isEmpty();
-    std::int64_t size();
+    Queue(std::int64_t max_size);
+    void enqueue(const T& value);
+    T dequeue();
+    bool isEmpty() const;
+    std::int64_t size() const;
+    T front() const;
+    std::int64_t getMaxSize() const;
+private:
+    void checkOverflow() const;
 };
 
 #endif
